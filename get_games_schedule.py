@@ -5,9 +5,10 @@ WNBA Shot Charts
 """
 import logging
 import requests
+import json
 
 HEADERS = {
-    'Host': 'stats.wnba.com',
+    'Host': 'www.wnba.com',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
     'Accept': 'application/json, text/plain, */*',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -15,12 +16,20 @@ HEADERS = {
     'x-nba-stats-origin': 'stats',
     'x-nba-stats-token': 'true',
     'Connection': 'keep-alive',
-    'Referer': 'https://stats.wnba.com/',
+    'Referer': 'https://www.wnba.com/',
     'Pragma': 'no-cache',
     'Cache-Control': 'no-cache',
 }
 
-TEAM_INDEX_URL = 'https://stats.wnba.com/js/data/widgets/teams_landing_inner.json' #'https://www.wnba.com/wp-json/api/v1/teams.json' # 'https://stats.wnba.com/js/data/widgets/teams_landing_inner.json' # 'https://www.wnba.com/wp-json/api/v1/teams.json' #
+# request_url = 'https://www.wnba.com/api/schedule?season=2025&regionId=1'
+
+parameters = {
+            'season': '2025',
+            'regionId': '1',
+        }
+
+endpoint = 'schedule'
+request_url = f'https://www.wnba.com/api/{endpoint}?'
 
 # Create a custom logger
 logging.basicConfig(level=logging.DEBUG,
@@ -29,4 +38,6 @@ logging.basicConfig(level=logging.DEBUG,
 
 logging.disable(logging.CRITICAL)
 
-r = requests.get(TEAM_INDEX_URL, timeout=10)
+r = requests.get(request_url, headers=HEADERS, params=parameters, timeout=10)
+data = json.loads(r.content.decode())
+

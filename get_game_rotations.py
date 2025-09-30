@@ -1,0 +1,1 @@
+'https://stats.wnba.com/stats/gamerotation?GameID=1012500013&LeagueID=10&RotationStat=PLAYER_PTS'

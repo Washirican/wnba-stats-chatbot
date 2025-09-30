@@ -22,7 +22,6 @@ HEADERS = {
 
 PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' # 'https://stats.nba.com/stats/playerindex?LeagueID=10&Season=2025&Historical=1' # 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' # 
 
-
 # Create a custom logger
 logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s: %(asctime)s - %(message)s',
