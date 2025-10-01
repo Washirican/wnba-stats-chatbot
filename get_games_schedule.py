@@ -3,9 +3,10 @@
 """
 WNBA Shot Charts
 """
-import logging
-import requests
 import json
+import logging
+
+import requests
 
 HEADERS = {
     'Host': 'www.wnba.com',
