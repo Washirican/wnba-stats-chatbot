@@ -22,7 +22,7 @@ HEADERS = {
     'Cache-Control': 'no-cache',
 }
 
-# request_url = 'https://www.wnba.com/api/schedule?season=2025&regionId=1'
+# complete_url = 'https://www.wnba.com/api/schedule?season=2025&regionId=1'
 
 parameters = {
             'season': '2025',
@@ -41,4 +41,3 @@ logging.disable(logging.CRITICAL)
 
 r = requests.get(request_url, headers=HEADERS, params=parameters, timeout=10)
 data = json.loads(r.content.decode())
-
