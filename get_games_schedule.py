@@ -41,3 +41,6 @@ logging.disable(logging.CRITICAL)
 
 r = requests.get(request_url, headers=HEADERS, params=parameters, timeout=10)
 data = json.loads(r.content.decode())
+
+# TODO (2025-10-01): Loop over data to get game dates and details.
+# data['leagueSchedule']['gameDates'][0]['games'][0].keys()
