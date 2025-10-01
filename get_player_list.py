@@ -5,6 +5,7 @@ WNBA Shot Charts
 """
 import logging
 import requests
+import json
 
 HEADERS = {
     'Host': 'stats.wnba.com',
@@ -30,3 +31,17 @@ logging.basicConfig(level=logging.DEBUG,
 logging.disable(logging.CRITICAL)
 
 r = requests.get(PLAYER_INDEX_URL, timeout=10)
+
+# Cleanup string
+dict_str = r.content.decode()[17:-1]
+
+# Turns string into dictionary
+data = json.loads(dict_str)
+players = data['data']['players']
+teams = data['data']['teams']
+data_date = data['generated']
+
+# TODO (2025-10-01): Save this to DB table
+# for player in players:
+    # print(player[1])
+    
