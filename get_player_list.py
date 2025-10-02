@@ -6,6 +6,7 @@ WNBA Shot Charts
 import logging
 import requests
 import json
+import csv
 
 HEADERS = {
     'Host': 'stats.wnba.com',
@@ -41,7 +42,13 @@ players = data['data']['players']
 teams = data['data']['teams']
 data_date = data['generated']
 
-# TODO (2025-10-01): Save this to DB table
-# for player in players:
-    # print(player[1])
-    
+# Define your headers
+headers = ['player_id', 'player_name', 'active_flag', 'rookie_year', 'last_year', 'unknown', 'current_team']
+
+# Open a file to write that heat
+with open('data/output.csv', 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    writer.writerow(headers) 
+    writer.writerows(players)
+
+print("CSV saved, you’re set!")
