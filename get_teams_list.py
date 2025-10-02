@@ -28,13 +28,13 @@ TEAM_INDEX_URL = 'https://www.wnba.com/wp-json/api/v1/teams.json' #'https://www.
 r = requests.get(TEAM_INDEX_URL,
                     timeout=10)
 
-team_list = json.loads(r.content.decode())
+# team_list = json.loads(r.content.decode())
 
-for val in team_list.values():
-    if self.name == val['a'].lower() or self.name == val['n'].lower():
-        self.id = val['id'].lower()
-        self.abbreviation = val['a'].lower()
-        self.city = val['c'].lower()
-        self.state = val['s'].lower()
-        self.time_zone = val['tz'].lower()
-        break
+# for val in team_list.values():
+#     if self.name == val['a'].lower() or self.name == val['n'].lower():
+#         self.id = val['id'].lower()
+#         self.abbreviation = val['a'].lower()
+#         self.city = val['c'].lower()
+#         self.state = val['s'].lower()
+#         self.time_zone = val['tz'].lower()
+#         break
