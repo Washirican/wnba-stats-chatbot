@@ -5,6 +5,8 @@ WNBA Shot Charts
 """
 import logging
 import requests
+import csv
+import json
 
 HEADERS = {
     'Host': 'stats.wnba.com',
@@ -20,13 +22,19 @@ HEADERS = {
     'Cache-Control': 'no-cache',
 }
 
-TEAM_INDEX_URL = 'https://stats.wnba.com/js/data/widgets/teams_landing_inner.json' #'https://www.wnba.com/wp-json/api/v1/teams.json' # 'https://stats.wnba.com/js/data/widgets/teams_landing_inner.json' # 'https://www.wnba.com/wp-json/api/v1/teams.json' #
+# FIXME (2025-10-02): 
+TEAM_INDEX_URL = 'https://www.wnba.com/wp-json/api/v1/teams.json' #'https://www.wnba.com/wp-json/api/v1/teams.json' # 'https://stats.wnba.com/js/data/widgets/teams_landing_inner.json' # 'https://www.wnba.com/wp-json/api/v1/teams.json' #
 
-# Create a custom logger
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(levelname)s: %(asctime)s - %(message)s',
-                    datefmt='%d-%b-%y %H:%M:%S')
+r = requests.get(TEAM_INDEX_URL,
+                    timeout=10)
 
-logging.disable(logging.CRITICAL)
+team_list = json.loads(r.content.decode())
 
-r = requests.get(TEAM_INDEX_URL, timeout=10)
+for val in team_list.values():
+    if self.name == val['a'].lower() or self.name == val['n'].lower():
+        self.id = val['id'].lower()
+        self.abbreviation = val['a'].lower()
+        self.city = val['c'].lower()
+        self.state = val['s'].lower()
+        self.time_zone = val['tz'].lower()
+        break
