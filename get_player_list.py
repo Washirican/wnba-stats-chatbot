@@ -46,7 +46,7 @@ data_date = data['generated']
 headers = ['player_id', 'player_name', 'active_flag', 'rookie_year', 'last_year', 'unknown', 'current_team']
 
 # Open a file to write that heat
-with open('data/output.csv', 'w', newline='', encoding='utf-8') as file:
+with open('data/all_players.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(headers) 
     writer.writerows(players)
