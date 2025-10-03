@@ -16,19 +16,45 @@ HEADERS = {
     'Referer': 'https://stats.wnba.com/',
 }
 
-# FIXME (2025-10-02): 
-TEAM_INDEX_URL = 'https://www.wnba.com/wp-json/api/v1/teams.json' #'https://www.wnba.com/wp-json/api/v1/teams.json' # 'https://stats.wnba.com/js/data/widgets/teams_landing_inner.json' # 'https://www.wnba.com/wp-json/api/v1/teams.json' #
+SEASON = 2024
 
-r = requests.get(TEAM_INDEX_URL,
+parameters = {
+    
+    'LastNGames': 0,
+    'LeagueID': 10,
+    'MeasureType': 'Base',
+    'Month': 0,
+    'OpponentTeamID': 0,
+    'PORound': 0,
+    'PaceAdjust': 'N',
+    'PerMode': 'PerGame',
+    'Period': 0,
+    'PlusMinus': 'N',
+    'Rank': 'N',
+    'Season': SEASON,
+    'SeasonType': 'Regular Season',
+    'TeamID': 0,
+    'TwoWay': 0,
+    }
+
+endpoint = 'leaguedashteamstats'
+request_url = f'https://stats.wnba.com/stats/{endpoint}?'
+
+# FIXME (2025-10-02): 
+
+r = requests.get(request_url,
+                    headers=HEADERS,
+                    params=parameters,
                     timeout=10)
 
-# team_list = json.loads(r.content.decode())
 
-# for val in team_list.values():
-#     if self.name == val['a'].lower() or self.name == val['n'].lower():
-#         self.id = val['id'].lower()
-#         self.abbreviation = val['a'].lower()
-#         self.city = val['c'].lower()
-#         self.state = val['s'].lower()
-#         self.time_zone = val['tz'].lower()
-#         break
+headers = json.loads(r.content.decode())['resultSets'][0]['headers']
+data = json.loads(r.content.decode())['resultSets'][0]['rowSet']
+
+# Open a file to write that heat
+with open(f'data/all_teams_{SEASON}.csv', 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    writer.writerow(headers) 
+    writer.writerows(data)
+
+print("CSV saved, you’re set!")
