@@ -1,1 +1,31 @@
-'https://stats.wnba.com/stats/gamerotation?GameID=1012500013&LeagueID=10&RotationStat=PLAYER_PTS'
+
+#!/usr/bin/env python3
+"""
+WNBA Shot Charts
+"""
+import logging
+import requests
+import json
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...',
+    'Accept': 'application/json, text/plain, */*',
+    'x-nba-stats-origin': 'stats',
+    'x-nba-stats-token': 'true',
+    'Referer': 'https://stats.wnba.com/',
+}
+
+request_url ='https://stats.wnba.com/stats/gamerotation?GameID=1012500013&LeagueID=10&RotationStat=PLAYER_PTS'
+
+parameters = {
+            'GameID': '1012500013',
+            'rangeType': '0',
+            'startPeriod': '0',
+            'endPeriod': '0',
+            'startRange': '0',
+            'endRange': '0'
+        }
+
+endpoint = 'boxscoretraditionalv3'
+request_url = f'https://stats.nba.com/stats/{endpoint}?'
+

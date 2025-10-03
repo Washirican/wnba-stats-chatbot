@@ -9,17 +9,11 @@ import json
 import csv
 
 HEADERS = {
-    'Host': 'stats.wnba.com',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...',
     'Accept': 'application/json, text/plain, */*',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br, zstd',
     'x-nba-stats-origin': 'stats',
     'x-nba-stats-token': 'true',
-    'Connection': 'keep-alive',
     'Referer': 'https://stats.wnba.com/',
-    'Pragma': 'no-cache',
-    'Cache-Control': 'no-cache',
 }
 
 PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' # 'https://stats.nba.com/stats/playerindex?LeagueID=10&Season=2025&Historical=1' # 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' # 

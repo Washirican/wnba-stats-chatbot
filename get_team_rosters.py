@@ -24,6 +24,8 @@ logging.basicConfig(level=logging.DEBUG,
 logging.disable(logging.CRITICAL)
 
 logging.debug('Team class get_roster()')
+
+# TODO (2025-10-03): Update to request by team id
 SEASON = '2025'
 parameters = {
     'LeagueID': '10',

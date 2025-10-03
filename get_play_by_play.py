@@ -8,20 +8,11 @@ import requests
 import json
 
 HEADERS = {
-    'Host': 'stats.nba.com',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
-    'Accept': '*/*',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br, zstd',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...',
+    'Accept': 'application/json, text/plain, */*',
     'x-nba-stats-origin': 'stats',
     'x-nba-stats-token': 'true',
-    'Connection': 'keep-alive',
-    'Origin': 'https://www.wnba.com',
-    'Referer': 'https://www.wnba.com/',
-    'Pragma': 'no-cache',
-    'Cache-Control': 'no-cache',
-    'x-nba-stats-origin' : 'stats',
-    'x-nba-stats-token' : 'true',
+    'Referer': 'https://stats.wnba.com/',
 }
 
 request_url = 'https://stats.wnba.com/stats/playbyplayv2?EndPeriod=10&EndRange=55800&GameID=1012500013&RangeType=2&Season=2025-26&SeasonType=Pre+Season&StartPeriod=1&StartRange=0'
