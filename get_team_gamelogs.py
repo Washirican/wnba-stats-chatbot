@@ -26,9 +26,8 @@ logging.basicConfig(level=logging.DEBUG,
 
 logging.disable(logging.CRITICAL)
 
-SEASON = '1997'
+SEASON = 1998
 
-"""Get player season gamelog."""
 parameters = {
     'LastNGames': '0',
     'LeagueID': '10',

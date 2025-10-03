@@ -26,11 +26,12 @@ logging.disable(logging.CRITICAL)
 logging.debug('Team class get_roster()')
 
 # TODO (2025-10-03): Update to request by team id
-SEASON = '2025'
+SEASON = 2025
+TEAMID = 1611661330
 parameters = {
     'LeagueID': '10',
     'Season': SEASON,
-    'TeamID': '1611661330',
+    'TeamID': TEAMID,
 }
 
 endpoint = 'commonteamroster'
@@ -45,7 +46,7 @@ headers = json.loads(r.content.decode())['resultSets'][0]['headers']
 data = json.loads(r.content.decode())['resultSets'][0]['rowSet']
 
 # Open a file to write that heat
-with open(f'data/team_roster_{SEASON}.csv', 'w', newline='', encoding='utf-8') as file:
+with open(f'data/team_roster_{SEASON}_{TEAMID}.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(headers) 
     writer.writerows(data)

@@ -15,6 +15,8 @@ HEADERS = {
     'Referer': 'https://stats.wnba.com/',
 }
 
+# FIXME (2025-10-03): Finish this code.
+
 request_url = 'https://stats.wnba.com/stats/shotchartleaguewide?LeagueID=10&Season=2025-26'
 r = requests.get(request_url, headers=HEADERS, timeout=10)
 r.status_code

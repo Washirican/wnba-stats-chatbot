@@ -40,8 +40,6 @@ parameters = {
 endpoint = 'leaguedashteamstats'
 request_url = f'https://stats.wnba.com/stats/{endpoint}?'
 
-# FIXME (2025-10-02): 
-
 r = requests.get(request_url,
                     headers=HEADERS,
                     params=parameters,

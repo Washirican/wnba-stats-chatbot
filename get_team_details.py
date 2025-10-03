@@ -23,8 +23,9 @@ logging.basicConfig(level=logging.DEBUG,
 
 logging.disable(logging.CRITICAL)
 
+TEAMID = 1611661330
 parameters = {
-    'TeamID': '1611661330',
+    'TeamID': TEAMID,
 }
 
 endpoint = 'teamdetails'
@@ -39,7 +40,7 @@ headers = json.loads(r.content.decode())['resultSets'][0]['headers']
 data = json.loads(r.content.decode())['resultSets'][0]['rowSet']
 
 # Open a file to write that heat
-with open(f'data/team_details.csv', 'w', newline='', encoding='utf-8') as file:
+with open(f'data/team_details_{TEAMID}.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(headers) 
     writer.writerows(data)

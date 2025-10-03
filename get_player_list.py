@@ -16,7 +16,9 @@ HEADERS = {
     'Referer': 'https://stats.wnba.com/',
 }
 
-PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' # 'https://stats.nba.com/stats/playerindex?LeagueID=10&Season=2025&Historical=1' # 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' # 
+# TODO (2025-10-03): Compare results from using these 2 URLs
+PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' 
+# PLAYER_INDEX_URL = 'https://stats.nba.com/stats/playerindex?LeagueID=10&Season=2025&Historical=1'
 
 # Create a custom logger
 logging.basicConfig(level=logging.DEBUG,
