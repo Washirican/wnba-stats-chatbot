@@ -11,7 +11,7 @@ title: Data Flow
 graph TD;
     A[(WNBA Stats\nAPI)]-->B(AWS VM);
     B-->D(Chatbot);
-    C[(AWS\nStorage)]-->B;
+    C[(AWS\nStorage)]<-->B;
     D-->E(User)
 :::
 
