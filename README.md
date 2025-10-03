@@ -50,3 +50,23 @@ graph TD
 * Play-By-Play data
 * Shot chart data
 
+::: mermaid
+
+---
+title: Data Flow
+---
+graph TD
+
+API[(WNBA Stats API)]
+PL[Player List]
+PGL[Player Game Log]
+TL[Team List]
+TGL[Team Game Log]
+S3[(AWS S3)]
+
+API --> PL
+API --> TL
+PL -- player_id --> PGL
+TL -- team_id --> TGL
+
+:::
