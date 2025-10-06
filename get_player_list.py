@@ -16,8 +16,7 @@ HEADERS = {
     'Referer': 'https://stats.wnba.com/',
 }
 
-# TODO (2025-10-03): Compare results from using these 2 URLs
-PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' 
+# PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' 
 # PLAYER_INDEX_URL = 'https://stats.nba.com/stats/playerindex?LeagueID=10&Season=2025&Historical=1'
 
 # Create a custom logger
@@ -25,26 +24,33 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s: %(asctime)s - %(message)s',
                     datefmt='%d-%b-%y %H:%M:%S')
 
-logging.disable(logging.CRITICAL)
+# logging.disable(logging.CRITICAL)
 
-r = requests.get(PLAYER_INDEX_URL, timeout=10)
+SEASON = 2025
 
-# Cleanup string
-dict_str = r.content.decode()[17:-1]
+parameters = {
+    'LeagueID': 10,
+    'Season': SEASON,
+    'Historical': 1,
+    }
 
-# Turns string into dictionary
-data = json.loads(dict_str)
-players = data['data']['players']
-teams = data['data']['teams']
-data_date = data['generated']
+endpoint = 'playerindex'
+request_url = f'https://stats.wnba.com/stats/{endpoint}?'
 
-# Define your headers
-headers = ['player_id', 'player_name', 'active_flag', 'rookie_year', 'last_year', 'unknown', 'current_team']
+r = requests.get(request_url,
+                    headers=HEADERS,
+                    params=parameters,
+                    timeout=10)
+
+logging.info(f'Request status code: {r.status_code}')
+
+headers = json.loads(r.content.decode())['resultSets'][0]['headers']
+data = json.loads(r.content.decode())['resultSets'][0]['rowSet']
 
 # Open a file to write that heat
-with open('data/all_players.csv', 'w', newline='', encoding='utf-8') as file:
+with open(f'data/all_players_{SEASON}.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(headers) 
-    writer.writerows(players)
+    writer.writerows(data)
 
 print("CSV saved, you’re set!")

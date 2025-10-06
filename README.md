@@ -63,10 +63,14 @@ PGL[Player Game Log]
 TL[Team List]
 TGL[Team Game Log]
 S3[(AWS S3)]
+USR((End User))
+LEX(AWS Lex)
 
 API --> PL
 API --> TL
+API --> PGL
+API --> TGL
 PL -- player_id --> PGL
 TL -- team_id --> TGL
-
+S3 <--> LEX <--> USR
 :::
