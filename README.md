@@ -64,13 +64,19 @@ TL[Team List]
 TGL[Team Game Log]
 S3[(AWS S3)]
 USR((End User))
-LEX(AWS Lex)
+LEX[AWS Lex]
+PIDL(player_ids)
+TIDL(team_ids)
 
-API --> PL
-API --> TL
-API --> PGL
+API -- request --> PL
+API -- request --> TL
+
+PIDL --> PGL
+API -- request --> PGL
 API --> TGL
-PL -- player_id --> PGL
-TL -- team_id --> TGL
+PL -- player_id --> PIDL
+TL -- team_id --> TIDL
 S3 <--> LEX <--> USR
+
+
 :::
