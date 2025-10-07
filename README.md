@@ -50,34 +50,41 @@ graph TD
 * Play-By-Play data
 * Shot chart data
 
+
+S3[(AWS S3)]
+USR((End User))
+LEX[AWS Lex]
+S3 <--> LEX <--> USR
+TIDL[team_ids]
+PIDL[player_ids]
+
 ::: mermaid
 
 ---
+
 title: Data Flow
+
 ---
 graph TD
 
 API[(WNBA Stats API)]
-PL[Player List]
-PGL[Player Game Log]
-TL[Team List]
-TGL[Team Game Log]
-S3[(AWS S3)]
-USR((End User))
-LEX[AWS Lex]
-PIDL(player_ids)
-TIDL(team_ids)
+PL[(Players)]
+TL[(Teams)]
+PGL[(Player Game Logs)]
+TGL[(Team Game Logs)]
 
-API -- request --> PL
-API -- request --> TL
+GPL[[get_player_list.py]]
+GTL[[get_team_list.py]]
+GTGL[[get_team_gamelogs.py]]
+GPGL[[get_player_gamelogs.py]]
 
-PIDL --> PGL
-API -- request --> PGL
-TIDL --> TGL
-API -- request --> TGL
-PL -- player_id --> PIDL
-TL -- team_id --> TIDL
-S3 <--> LEX <--> USR
+GPGL <-- player_id --> PL
+API <-- request --> GPGL
+GPGL --> PGL
+
+API <-- request --> GPL --> PL
+API <-- request --> GTL --> TL
+API <-- request --> GTGL --> TGL
 
 
 :::
