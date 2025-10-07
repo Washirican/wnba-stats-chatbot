@@ -73,7 +73,8 @@ API -- request --> TL
 
 PIDL --> PGL
 API -- request --> PGL
-API --> TGL
+TIDL --> TGL
+API -- request --> TGL
 PL -- player_id --> PIDL
 TL -- team_id --> TIDL
 S3 <--> LEX <--> USR

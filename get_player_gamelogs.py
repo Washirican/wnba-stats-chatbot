@@ -25,40 +25,41 @@ HEADERS = {
 }
 
 SEASON = 2025
+PLAYER_ID = 1629483
 
+"""Get player season gamelog."""
 parameters = {
-    
-    'LastNGames': 0,
-    'LeagueID': 10,
-    'MeasureType': 'Base',
-    'Month': 0,
-    'OpponentTeamID': 0,
-    'PORound': 0,
-    'PaceAdjust': 'N',
-    'PerMode': 'PerGame',
-    'Period': 0,
-    'PlusMinus': 'N',
-    'Rank': 'N',
-    'Season': SEASON,
-    'SeasonType': 'Regular Season',
-    'TeamID': 0,
-    'TwoWay': 0,
-    }
+'LastNGames': '0',
+'LeagueID': 10,
+'MeasureType': 'Base',
+'Month': '0',
+'OpponentTeamID': '0',
+'PORound': '0',
+'PaceAdjust': 'N',
+'PerMode': 'Totals',
+'Period': '0',
+'PlayerID': PLAYER_ID,
+'PlusMinus': 'N',
+'Rank': 'N',
+'Season': SEASON,
+'SeasonSegment': '',
+'SeasonType': 'Regular Season'
+}
 
-endpoint = 'leaguedashteamstats'
+endpoint = 'playergamelogs'
 request_url = f'https://stats.wnba.com/stats/{endpoint}?'
 
 r = requests.get(request_url,
-                    headers=HEADERS,
-                    params=parameters,
-                    timeout=10)
-
+                headers=HEADERS,
+                params=parameters,
+                timeout=10)
 
 headers = json.loads(r.content.decode())['resultSets'][0]['headers']
 data = json.loads(r.content.decode())['resultSets'][0]['rowSet']
 
+
 # Open a file to write that heat
-with open(f'data/all_teams_{SEASON}.csv', 'w', newline='', encoding='utf-8') as file:
+with open(f'data/player_gamelogs_{SEASON}_{PLAYER_ID}.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(headers) 
     writer.writerows(data)

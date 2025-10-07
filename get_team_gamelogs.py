@@ -24,9 +24,9 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s: %(asctime)s - %(message)s',
                     datefmt='%d-%b-%y %H:%M:%S')
 
-logging.disable(logging.CRITICAL)
+# logging.disable(logging.CRITICAL)
 
-SEASON = 1998
+SEASON = 2025
 
 parameters = {
     'LastNGames': '0',
@@ -63,4 +63,4 @@ with open(f'data/team_gamelogs_{SEASON}.csv', 'w', newline='', encoding='utf-8')
     writer.writerow(headers) 
     writer.writerows(data)
 
-print("CSV saved, you’re set!")
+logging.info('Data saved to CSV file.')

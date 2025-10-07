@@ -16,9 +16,6 @@ HEADERS = {
     'Referer': 'https://stats.wnba.com/',
 }
 
-# PLAYER_INDEX_URL = 'https://stats.wnba.com/js/data/ptsd/stats_ptsd.js' 
-# PLAYER_INDEX_URL = 'https://stats.nba.com/stats/playerindex?LeagueID=10&Season=2025&Historical=1'
-
 # Create a custom logger
 logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s: %(asctime)s - %(message)s',
@@ -53,4 +50,4 @@ with open(f'data/all_players_{SEASON}.csv', 'w', newline='', encoding='utf-8') a
     writer.writerow(headers) 
     writer.writerows(data)
 
-print("CSV saved, you’re set!")
+logging.info('Data saved to CSV file.')
